@@ -1,0 +1,20 @@
+[
+  {
+    "id": 1,
+    "recommendation": "Establish a national anti-corruption commission.",
+    "accepted": true,
+    "implemented": false
+  },
+  {
+    "id": 2,
+    "recommendation": "Increase funding for mental health services.",
+    "accepted": true,
+    "implemented": true
+  },
+  {
+    "id": 3,
+    "recommendation": "Review mandatory detention policies.",
+    "accepted": false,
+    "implemented": false
+  }
+]
