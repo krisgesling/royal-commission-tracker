@@ -1,5 +1,5 @@
 {
-  "name": "royal-commission-tracker",
+  "name": "commission-impossible",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -16,5 +16,8 @@
     "svelte": "^5.28.1",
     "tailwindcss": "^4.1.7",
     "vite": "^6.3.5"
+  },
+  "dependencies": {
+    "@tailwindcss/vite": "^4.1.7"
   }
 }

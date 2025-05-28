@@ -1,20 +1,27 @@
 [
   {
-    "id": 1,
-    "recommendation": "Establish a national anti-corruption commission.",
-    "accepted": true,
-    "implemented": false
-  },
-  {
-    "id": 2,
-    "recommendation": "Increase funding for mental health services.",
-    "accepted": true,
-    "implemented": true
-  },
-  {
-    "id": 3,
-    "recommendation": "Review mandatory detention policies.",
-    "accepted": false,
-    "implemented": false
+    "name": "Example Commission",
+    "summary": "This is a fictional example commission for demonstration purposes.",
+    "findings": "The commission found several areas for improvement in policy and practice.",
+    "recommendations": [
+      {
+        "id": 1,
+        "recommendation": "Establish a national anti-corruption commission.",
+        "accepted": true,
+        "implemented": false
+      },
+      {
+        "id": 2,
+        "recommendation": "Increase funding for mental health services.",
+        "accepted": true,
+        "implemented": true
+      },
+      {
+        "id": 3,
+        "recommendation": "Review mandatory detention policies.",
+        "accepted": false,
+        "implemented": false
+      }
+    ]
   }
 ]

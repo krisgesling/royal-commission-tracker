@@ -1,0 +1,37 @@
+{
+  "name": "Royal Commission into Aboriginal Deaths in Custody",
+  "summary": "The Royal Commission into Aboriginal Deaths in Custody (1987–1991) was established to investigate the causes of the high number of deaths of Aboriginal and Torres Strait Islander people in custody in Australia between 1980 and 1989. The Commission examined individual cases and broader social, cultural, and legal factors, ultimately making 339 recommendations to reduce deaths in custody and address systemic disadvantage.",
+  "findings": "The Commission found that while most deaths were not the result of deliberate violence by authorities, there were widespread failures in the duty of care, systemic neglect, and significant social disadvantage among Aboriginal people. The report highlighted the over-representation of Aboriginal people in custody, the impact of social and economic disadvantage, and the need for major reforms in policing, justice, and social policy.",
+  "recommendations": [
+    {
+      "id": 1,
+      "recommendation": "Imprisonment should be used only as a last resort.",
+      "accepted": true,
+      "implemented": false
+    },
+    {
+      "id": 2,
+      "recommendation": "All deaths in custody should be subject to rigorous and accountable investigations and comprehensive coronial inquiry.",
+      "accepted": true,
+      "implemented": true
+    },
+    {
+      "id": 3,
+      "recommendation": "Medical assistance must be called where necessary for people in custody.",
+      "accepted": true,
+      "implemented": false
+    },
+    {
+      "id": 4,
+      "recommendation": "Better collaboration and liaison with Aboriginal communities.",
+      "accepted": true,
+      "implemented": true
+    },
+    {
+      "id": 5,
+      "recommendation": "The offence of public drunkenness should be abolished.",
+      "accepted": true,
+      "implemented": true
+    }
+  ]
+}
