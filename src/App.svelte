@@ -87,118 +87,122 @@
   }
 </script>
 
-<main class="min-h-screen bg-gradient-to-br from-blue-100 via-white to-indigo-100 text-gray-900 p-4 flex flex-col items-center">
-  <div class="w-full max-w-5xl">
-    <h1 class="text-4xl md:text-5xl font-extrabold mb-2 text-center text-red-700 drop-shadow-sm tracking-tight">Commission Impossible</h1>
-    <p class="text-center text-lg text-gray-600 mb-6">Your mission, should you choose to accept it: Implement existing recommendations instead of starting new inquiries</p>
+<main class="min-h-screen bg-gradient-to-br from-gray-100 via-white to-gray-200 text-gray-900 p-4 flex flex-col items-center relative">
+  <!-- Subtle document pattern background -->
+  <div class="absolute inset-0 opacity-5 bg-repeat" style="background-image: url('data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2220%22 height=%2220%22 viewBox=%220 0 20 20%22><rect width=%2220%22 height=%2220%22 fill=%22%23000%22/><rect x=%222%22 y=%222%22 width=%2216%22 height=%2216%22 fill=%22%23fff%22/><rect x=%224%22 y=%224%22 width=%2212%22 height=%221%22 fill=%22%23000%22/><rect x=%224%22 y=%226%22 width=%2212%22 height=%221%22 fill=%22%23000%22/><rect x=%224%22 y=%228%22 width=%2212%22 height=%221%22 fill=%22%23000%22/></svg>'); background-size: 40px 40px;"></div>
+  
+  <div class="w-full max-w-5xl relative z-10">
+    <h1 class="text-4xl md:text-5xl font-extrabold mb-2 text-center text-red-700 drop-shadow-sm tracking-tight">The <span class="bg-gradient-to-r from-red-600 to-orange-600 text-white px-2 py-1 rounded">█████████</span> Truth</h1>
+    <p class="text-center text-lg text-gray-600 mb-6">Uncovering the classified reality: What happens after the cameras stop rolling</p>
     
     <!-- Random Recommendation Button -->
     <div class="text-center mb-8">
       <button 
         on:click={getRandomUnimplementedRecommendation}
-        class="bg-gradient-to-r from-red-600 to-orange-600 hover:from-red-700 hover:to-orange-700 text-white font-bold py-3 px-6 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-red-300"
+        class="bg-gradient-to-r from-red-600 to-orange-600 hover:from-red-700 hover:to-orange-700 text-white font-bold py-3 px-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-red-300 border-2 border-red-700"
       >
-        🎯 Accept Your Mission
+        📄 DECLASSIFY RANDOM FINDING
       </button>
       <p class="text-sm text-gray-500 mt-2 max-w-lg mx-auto">
-        Your mission, should you choose to accept it: Implement an existing recommendation instead of commissioning a new inquiry
+        Access classified recommendations from the archives - discover what's been gathering dust since the inquiry ended
       </p>
     </div>
     {#if loading}
       <div class="flex justify-center items-center h-32">
-        <span class="animate-spin rounded-full h-8 w-8 border-b-2 border-indigo-500 mr-2"></span>
-        <span class="text-indigo-700 font-semibold">Loading commissions...</span>
+        <div class="relative">
+          <span class="animate-pulse bg-gradient-to-r from-red-600 to-orange-600 text-white px-4 py-2 rounded font-mono text-sm">SCANNING ARCHIVES</span>
+          <div class="absolute -bottom-2 left-0 right-0 h-1 bg-gray-200 rounded">
+            <div class="h-1 bg-gradient-to-r from-red-600 to-orange-600 rounded animate-pulse"></div>
+          </div>
+        </div>
       </div>
     {:else if error}
       <div class="text-red-600 text-center">{error}</div>
     {:else}
       <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
         {#each commissions as c}
-          <div class="bg-white rounded-2xl shadow-xl border-2 border-red-100 hover:border-red-400 transition-colors p-6 flex flex-col items-start relative group cursor-pointer hover:scale-[1.02] duration-200" on:click={() => openCommission(c)}>
+          <div class="bg-white rounded-lg shadow-xl border-2 border-gray-200 hover:border-red-400 transition-colors p-6 flex flex-col items-start relative group cursor-pointer hover:scale-[1.02] duration-200 bg-gradient-to-br from-white to-gray-50" on:click={() => openCommission(c)}>
             <div class="absolute top-0 right-0 m-4">
-              <span class="inline-block px-3 py-1 rounded-full bg-red-50 text-red-700 text-xs font-bold shadow">🎯 {c.stats.total} Missions</span>
+              <span class="inline-block px-3 py-1 bg-red-600 text-white text-xs font-bold font-mono shadow">CLASSIFIED: {c.stats.total} FINDINGS</span>
             </div>
-            <h2 class="text-2xl font-bold text-red-800 mb-2 group-hover:text-red-600 transition-colors pr-20">{c.name}</h2>
+            <div class="bg-red-100 border-l-4 border-red-600 p-2 mb-3 w-full">
+              <p class="text-xs font-bold text-red-800 font-mono">📋 OFFICIAL INQUIRY DOCUMENT</p>
+            </div>
+            <h2 class="text-2xl font-bold text-gray-900 mb-2 group-hover:text-red-600 transition-colors pr-20">{c.name}</h2>
             <p class="mb-4 text-gray-700 line-clamp-3">{c.summary}</p>
             <div class="flex gap-3 mt-auto">
-              <span class="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-orange-100 text-orange-700 font-semibold text-sm">
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4"/>
-                </svg>
-                Accepted: {c.stats.accepted}
+              <span class="inline-flex items-center gap-1 px-3 py-1 bg-green-100 border border-green-300 text-green-800 font-bold text-xs font-mono uppercase tracking-wide">
+                ✓ ACCEPTED: {c.stats.accepted}
               </span>
-              <span class="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-green-100 text-green-700 font-semibold text-sm">
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
-                </svg>
-                Complete: {c.stats.implemented}
+              <span class="inline-flex items-center gap-1 px-3 py-1 bg-orange-100 border border-orange-300 text-orange-800 font-bold text-xs font-mono uppercase tracking-wide">
+                ⏳ IMPLEMENTED: {c.stats.implemented}
               </span>
             </div>
             <div class="absolute bottom-0 right-0 m-4 opacity-0 group-hover:opacity-100 transition-opacity">
-              <span class="text-red-500 font-bold text-xs">🎯 View Mission Brief →</span>
+              <span class="text-red-600 font-bold text-xs font-mono">📄 ACCESS FULL REPORT →</span>
             </div>
           </div>
         {/each}
       </div>
     {/if}
     {#if selectedCommission}
-      <div class="fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center z-50">
-        <div class="bg-white rounded-2xl shadow-2xl max-w-2xl w-full p-8 relative animate-fade-in">
+      <div class="fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50">
+        <div class="bg-white rounded-lg shadow-2xl max-w-4xl w-full mx-4 p-8 relative animate-fade-in border-4 border-red-600">
           <button class="absolute top-4 right-4 text-gray-400 hover:text-red-600 text-2xl font-bold" on:click={closeCommission}>&times;</button>
           
-          <h2 class="text-3xl font-bold text-red-800 mb-2">{selectedCommission.name}</h2>
-          <p class="mb-3 text-gray-700"><span class="font-semibold text-red-700">Intelligence Summary:</span> {selectedCommission.summary}</p>
-          <p class="mb-4 text-gray-700"><span class="font-semibold text-red-700">Field Findings:</span> {selectedCommission.findings}</p>
+          <div class="bg-red-600 text-white p-4 mb-6 -m-8 mb-6">
+            <div class="flex items-center justify-between">
+              <div>
+                <p class="text-sm font-mono font-bold">CLASSIFIED DOCUMENT</p>
+                <p class="text-xs font-mono opacity-75">SECURITY CLEARANCE REQUIRED</p>
+              </div>
+              <div class="bg-white text-red-600 px-3 py-1 font-mono text-xs font-bold">
+                CONFIDENTIAL
+              </div>
+            </div>
+          </div>
           
-          <div class="overflow-x-auto rounded-lg shadow bg-red-50">
-            <table class="min-w-full divide-y divide-red-200">
+          <h2 class="text-3xl font-bold text-gray-900 mb-4">{selectedCommission.name}</h2>
+          <p class="mb-3 text-gray-700"><span class="font-bold text-red-700 font-mono">EXECUTIVE SUMMARY:</span> {selectedCommission.summary}</p>
+          <p class="mb-6 text-gray-700"><span class="font-bold text-red-700 font-mono">KEY FINDINGS:</span> {selectedCommission.findings}</p>
+          
+          <div class="overflow-x-auto rounded-lg shadow bg-gray-50 border-2 border-gray-200">
+            <table class="min-w-full divide-y divide-gray-300">
               <thead>
-                <tr class="bg-red-200">
-                  <th class="px-4 py-3 text-left font-semibold text-red-700">Mission Objective</th>
-                  <th class="px-4 py-3 text-center font-semibold text-red-700">Approved</th>
-                  <th class="px-4 py-3 text-center font-semibold text-red-700">Status</th>
+                <tr class="bg-gray-200">
+                  <th class="px-4 py-3 text-left font-bold text-gray-900 font-mono text-sm">RECOMMENDATION</th>
+                  <th class="px-4 py-3 text-center font-bold text-gray-900 font-mono text-sm">STATUS</th>
+                  <th class="px-4 py-3 text-center font-bold text-gray-900 font-mono text-sm">IMPLEMENTATION</th>
                 </tr>
               </thead>
-              <tbody class="divide-y divide-red-100">
+              <tbody class="divide-y divide-gray-200">
                 {#each selectedCommission.recommendations as rec}
-                  <tr class="hover:bg-red-100 transition-colors">
+                  <tr class="hover:bg-gray-100 transition-colors">
                     <td class="px-4 py-3 align-top text-left">
                       <span class="block font-medium text-gray-900">{rec.recommendation}</span>
                       {#if rec.details}
-                        <span class="block text-xs text-gray-500 mt-1">{rec.details}</span>
+                        <span class="block text-xs text-gray-500 mt-1 italic">{rec.details}</span>
                       {/if}
                     </td>
                     <td class="px-4 py-3 text-center align-top">
                       {#if rec.accepted}
-                        <span class="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-green-100 text-green-700 font-semibold text-sm">
-                          <svg class="w-4 h-4 inline" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
-                          </svg>
-                          ✓ Approved
+                        <span class="inline-block px-3 py-1 bg-green-100 border border-green-400 text-green-800 font-bold text-xs font-mono">
+                          ✓ ACCEPTED
                         </span>
                       {:else}
-                        <span class="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-red-100 text-red-700 font-semibold text-sm">
-                          <svg class="w-4 h-4 inline" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
-                          </svg>
-                          ✗ Denied
+                        <span class="inline-block px-3 py-1 bg-red-100 border border-red-400 text-red-800 font-bold text-xs font-mono">
+                          ✗ REJECTED
                         </span>
                       {/if}
                     </td>
                     <td class="px-4 py-3 text-center align-top">
                       {#if rec.implemented}
-                        <span class="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-green-100 text-green-700 font-semibold text-sm">
-                          <svg class="w-4 h-4 inline" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
-                          </svg>
-                          Mission Complete
+                        <span class="inline-block px-3 py-1 bg-green-100 border border-green-400 text-green-800 font-bold text-xs font-mono">
+                          ✓ COMPLETED
                         </span>
                       {:else}
-                        <span class="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-orange-100 text-orange-700 font-semibold text-sm">
-                          <svg class="w-4 h-4 inline" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                          </svg>
-                          Awaiting Action
+                        <span class="inline-block px-3 py-1 bg-orange-100 border border-orange-400 text-orange-800 font-bold text-xs font-mono">
+                          ⏳ PENDING
                         </span>
                       {/if}
                     </td>
@@ -207,16 +211,20 @@
               </tbody>
             </table>
             {#if selectedCommission.recommendations.length === 0}
-              <div class="p-8 text-center text-gray-400">No mission objectives found for this operation.</div>
+              <div class="p-8 text-center text-gray-400 font-mono">
+                <div class="bg-red-600 text-white px-4 py-2 inline-block font-bold">
+                  ████████ REDACTED ████████
+                </div>
+              </div>
             {/if}
           </div>
           
           <div class="mt-6 text-center">
             <button 
               on:click={closeCommission}
-              class="bg-gradient-to-r from-red-600 to-orange-600 hover:from-red-700 hover:to-orange-700 text-white font-bold py-2 px-6 rounded-full transition-all duration-300 transform hover:scale-105"
+              class="bg-gradient-to-r from-red-600 to-orange-600 hover:from-red-700 hover:to-orange-700 text-white font-bold py-2 px-6 rounded transition-all duration-300 transform hover:scale-105 font-mono"
             >
-              🎯 Close Brief
+              📄 CLOSE FILE
             </button>
           </div>
         </div>
@@ -225,33 +233,45 @@
     
     <!-- Random Recommendation Modal -->
     {#if showRandomModal && randomRecommendation}
-      <div class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-        <div class="bg-white rounded-2xl shadow-2xl max-w-3xl w-full mx-4 p-8 relative animate-fade-in">
+      <div class="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50">
+        <div class="bg-white rounded-lg shadow-2xl max-w-4xl w-full mx-4 p-8 relative animate-fade-in border-4 border-red-600">
           <button class="absolute top-4 right-4 text-gray-400 hover:text-red-600 text-2xl font-bold" on:click={closeRandomModal}>&times;</button>
           
-          <div class="text-center mb-6">
-            <h2 class="text-3xl font-bold text-red-800 mb-2">🎯 Mission Brief</h2>
-            <div class="inline-block px-4 py-2 bg-red-100 text-red-800 rounded-full text-sm font-semibold">
-              Source: {randomRecommendation.commissionName}
+          <div class="bg-red-600 text-white p-4 mb-6 -m-8 mb-6">
+            <div class="flex items-center justify-between">
+              <div>
+                <p class="text-sm font-mono font-bold">DECLASSIFIED FINDING</p>
+                <p class="text-xs font-mono opacity-75">ACCESS GRANTED: {new Date().toISOString().split('T')[0]}</p>
+              </div>
+              <div class="bg-orange-500 text-white px-3 py-1 font-mono text-xs font-bold animate-pulse">
+                UNIMPLEMENTED
+              </div>
             </div>
-            <p class="text-xs text-gray-500 mt-2 italic">This message will not self-destruct, unlike most recommendations</p>
           </div>
           
-          <div class="bg-gradient-to-r from-purple-50 to-pink-50 rounded-xl p-6 border-2 border-purple-200">
+          <div class="text-center mb-6">
+            <h2 class="text-3xl font-bold text-gray-900 mb-2">ARCHIVED RECOMMENDATION</h2>
+            <div class="inline-block px-4 py-2 bg-gray-100 text-gray-800 font-mono text-sm font-bold border">
+              SOURCE: {randomRecommendation.commissionName}
+            </div>
+            <p class="text-xs text-gray-500 mt-2 italic font-mono">Security Level: DECLASSIFIED • Status: PENDING IMPLEMENTATION</p>
+          </div>
+          
+          <div class="bg-gradient-to-r from-gray-50 to-gray-100 rounded-lg p-6 border-2 border-gray-300">
             <div class="flex items-start gap-4">
-              <div class="bg-red-600 text-white rounded-full w-10 h-10 flex items-center justify-center font-bold text-sm flex-shrink-0">
+              <div class="bg-red-600 text-white font-mono w-12 h-12 flex items-center justify-center font-bold text-sm flex-shrink-0">
                 #{randomRecommendation.id}
               </div>
               <div class="flex-1">
-                <div class="bg-yellow-100 border-l-4 border-yellow-500 p-3 mb-3">
-                  <p class="text-sm font-medium text-yellow-800">🎯 MISSION OBJECTIVE</p>
+                <div class="bg-orange-100 border-l-4 border-orange-500 p-3 mb-4">
+                  <p class="text-sm font-bold text-orange-800 font-mono">📋 RECOMMENDATION DETAILS</p>
                 </div>
-                <p class="text-lg text-gray-800 font-medium leading-relaxed">
+                <p class="text-lg text-gray-900 font-medium leading-relaxed mb-4">
                   {randomRecommendation.recommendation}
                 </p>
                 {#if randomRecommendation.details}
-                  <p class="text-sm text-gray-600 mt-3 italic">
-                    {randomRecommendation.details}
+                  <p class="text-sm text-gray-600 italic bg-gray-100 p-3 border-l-4 border-gray-400">
+                    <span class="font-mono font-bold text-gray-800">ADDITIONAL CONTEXT:</span> {randomRecommendation.details}
                   </p>
                 {/if}
               </div>
@@ -260,19 +280,13 @@
           
           <div class="mt-6 flex justify-center gap-4">
             <div class="flex items-center gap-2">
-              <span class="inline-flex items-center gap-1 px-3 py-2 rounded-full bg-green-100 text-green-700 font-semibold text-sm">
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
-                </svg>
-                Accepted
+              <span class="inline-block px-4 py-2 bg-green-100 border border-green-400 text-green-800 font-bold text-xs font-mono">
+                ✓ OFFICIALLY ACCEPTED
               </span>
             </div>
             <div class="flex items-center gap-2">
-              <span class="inline-flex items-center gap-1 px-3 py-2 rounded-full bg-red-100 text-red-700 font-semibold text-sm">
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
-                </svg>
-                Not Implemented
+              <span class="inline-block px-4 py-2 bg-red-100 border border-red-400 text-red-800 font-bold text-xs font-mono animate-pulse">
+                ✗ NOT IMPLEMENTED
               </span>
             </div>
           </div>
@@ -280,22 +294,22 @@
           <div class="mt-6 text-center">
             <button 
               on:click={getRandomUnimplementedRecommendation}
-              class="bg-gradient-to-r from-red-600 to-orange-600 hover:from-red-700 hover:to-orange-700 text-white font-bold py-2 px-6 rounded-full transition-all duration-300 transform hover:scale-105 mr-4"
+              class="bg-gradient-to-r from-red-600 to-orange-600 hover:from-red-700 hover:to-orange-700 text-white font-bold py-2 px-6 rounded transition-all duration-300 transform hover:scale-105 mr-4 font-mono"
             >
-              🎯 New Mission
+              📄 ACCESS ANOTHER FILE
             </button>
             <button 
               on:click={closeRandomModal}
-              class="bg-gray-200 hover:bg-gray-300 text-gray-700 font-bold py-2 px-6 rounded-full transition-all duration-300"
+              class="bg-gray-200 hover:bg-gray-300 text-gray-700 font-bold py-2 px-6 rounded transition-all duration-300 font-mono"
             >
-              Mission Complete
+              CLOSE FILE
             </button>
           </div>
         </div>
       </div>
     {/if}
-    <div class="mt-12 text-center text-gray-500 text-sm">
-      &copy; {new Date().getFullYear()} Commission Impossible
+    <div class="mt-12 text-center text-gray-500 text-sm font-mono">
+      &copy; {new Date().getFullYear()} The Redacted Truth • Security Classification: UNCLASSIFIED
     </div>
   </div>
 </main>
