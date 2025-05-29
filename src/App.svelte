@@ -32,13 +32,24 @@
             };
           }
         }
-        // Add stats
-        const recs = data.recommendations || [];
+        // Add stats - handle both old flat structure and new categorized structure
+        let recs = [];
+        if (data.categories && Array.isArray(data.categories)) {
+          // New categorized structure
+          recs = data.categories.flatMap(cat => cat.recommendations || []);
+        } else {
+          // Old flat structure
+          recs = data.recommendations || [];
+        }
+        
         data.stats = {
-          total: recs.length,
-          accepted: recs.filter(r => r.accepted).length,
-          implemented: recs.filter(r => r.implemented).length
+          total: data.totalRecommendations || recs.length,
+          accepted: recs.filter(r => r.accepted === true || r.accepted === 'true').length,
+          implemented: recs.filter(r => r.implemented === true || r.implemented === 'true').length
         };
+        
+        // Store flattened recommendations for easier access
+        data.allRecommendations = recs;
         data.file = c.file;
         commissions.push(data);
       } catch (e) {
@@ -64,8 +75,9 @@
     const unimplementedRecs = [];
     
     commissions.forEach(commission => {
-      commission.recommendations.forEach(rec => {
-        if (!rec.implemented) {
+      const allRecs = commission.allRecommendations || commission.recommendations || [];
+      allRecs.forEach(rec => {
+        if (!rec.implemented || rec.implemented === 'partial' || rec.implemented === false) {
           unimplementedRecs.push({
             ...rec,
             commissionName: commission.name
@@ -87,144 +99,299 @@
   }
 </script>
 
-<main class="min-h-screen bg-gradient-to-br from-gray-100 via-white to-gray-200 text-gray-900 p-4 flex flex-col items-center relative">
-  <!-- Subtle document pattern background -->
+<main class="min-h-screen bg-mandate-dark text-mandate-light p-4 flex flex-col items-center relative">
+  <!-- Subtle pattern background -->
   <div class="absolute inset-0 opacity-5 bg-repeat" style="background-image: url('data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2220%22 height=%2220%22 viewBox=%220 0 20 20%22><rect width=%2220%22 height=%2220%22 fill=%22%23000%22/><rect x=%222%22 y=%222%22 width=%2216%22 height=%2216%22 fill=%22%23fff%22/><rect x=%224%22 y=%224%22 width=%2212%22 height=%221%22 fill=%22%23000%22/><rect x=%224%22 y=%226%22 width=%2212%22 height=%221%22 fill=%22%23000%22/><rect x=%224%22 y=%228%22 width=%2212%22 height=%221%22 fill=%22%23000%22/></svg>'); background-size: 40px 40px;"></div>
   
   <div class="w-full max-w-5xl relative z-10">
-    <h1 class="text-4xl md:text-5xl font-extrabold mb-2 text-center text-red-700 drop-shadow-sm tracking-tight">The <span class="bg-gradient-to-r from-red-600 to-orange-600 text-white px-2 py-1 rounded">█████████</span> Truth</h1>
-    <p class="text-center text-lg text-gray-600 mb-6">Uncovering the classified reality: What happens after the cameras stop rolling</p>
+    <!-- Logo/Title section with UNMET stamp -->
+    <div class="text-center mb-8">
+      <h1 class="text-5xl md:text-6xl font-official font-bold mb-2 text-mandate-light uppercase tracking-wide">
+        THE 
+        <span class="relative inline-block">
+          <span class="text-5xl md:text-6xl font-impact font-bold text-mandate-light uppercase tracking-mandate">UNFINISHED</span>
+          <div class="absolute -bottom-2 left-0 right-0 h-1 bg-gradient-to-r from-mandate-red to-mandate-orange"></div>
+        </span>
+      </h1>
+      <div class="relative inline-block mt-4">
+        <h2 class="text-6xl md:text-7xl font-impact font-bold text-mandate-light uppercase tracking-mandate">MANDATE</h2>
+        <!-- UNMET stamp overlaid -->
+        <div class="absolute -top-4 -right-8 transform rotate-12">
+          <div class="bg-gradient-to-r from-mandate-red to-mandate-orange text-white px-4 py-2 rounded-md shadow-lg border-2 border-mandate-deep-red">
+            <span class="font-official font-bold text-lg uppercase tracking-wide">UNMET</span>
+          </div>
+        </div>
+      </div>
+      <p class="text-xl text-mandate-light/80 mt-6 font-body max-w-3xl mx-auto leading-relaxed">
+        What happens when the cameras stop rolling and the spotlight fades? Tracking the unfinished business of Australian Royal Commissions and inquiries.
+      </p>
+    </div>
     
     <!-- Random Recommendation Button -->
-    <div class="text-center mb-8">
+    <div class="text-center mb-12">
       <button 
         on:click={getRandomUnimplementedRecommendation}
-        class="bg-gradient-to-r from-red-600 to-orange-600 hover:from-red-700 hover:to-orange-700 text-white font-bold py-3 px-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-red-300 border-2 border-red-700"
+        class="bg-gradient-to-r from-mandate-red to-mandate-orange hover:from-mandate-deep-red hover:to-mandate-red text-white font-official font-bold py-4 px-8 rounded-lg shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-mandate-red/50 uppercase tracking-wide"
       >
-        📄 DECLASSIFY RANDOM FINDING
+        🔍 Find Unfinished Business
       </button>
-      <p class="text-sm text-gray-500 mt-2 max-w-lg mx-auto">
-        Access classified recommendations from the archives - discover what's been gathering dust since the inquiry ended
+      <p class="text-sm text-mandate-light/60 mt-3 max-w-lg mx-auto font-body">
+        Discover recommendations that remain unfulfilled - the mandates that time forgot
       </p>
     </div>
     {#if loading}
       <div class="flex justify-center items-center h-32">
         <div class="relative">
-          <span class="animate-pulse bg-gradient-to-r from-red-600 to-orange-600 text-white px-4 py-2 rounded font-mono text-sm">SCANNING ARCHIVES</span>
-          <div class="absolute -bottom-2 left-0 right-0 h-1 bg-gray-200 rounded">
-            <div class="h-1 bg-gradient-to-r from-red-600 to-orange-600 rounded animate-pulse"></div>
+          <span class="animate-pulse bg-gradient-to-r from-mandate-red to-mandate-orange text-white px-6 py-3 rounded-lg font-official font-bold text-sm uppercase tracking-wide shadow-lg">
+            Searching Records...
+          </span>
+          <div class="absolute -bottom-3 left-0 right-0 h-1 bg-mandate-card rounded">
+            <div class="h-1 bg-gradient-to-r from-mandate-red to-mandate-orange rounded animate-pulse"></div>
           </div>
         </div>
       </div>
     {:else if error}
-      <div class="text-red-600 text-center">{error}</div>
+      <div class="text-mandate-red text-center font-official font-bold">{error}</div>
     {:else}
       <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
         {#each commissions as c}
-          <div class="bg-white rounded-lg shadow-xl border-2 border-gray-200 hover:border-red-400 transition-colors p-6 flex flex-col items-start relative group cursor-pointer hover:scale-[1.02] duration-200 bg-gradient-to-br from-white to-gray-50" on:click={() => openCommission(c)}>
+          <div class="bg-mandate-card rounded-xl shadow-xl border border-mandate-slate/30 hover:border-mandate-red/50 transition-all duration-300 p-6 flex flex-col items-start relative group cursor-pointer hover:scale-[1.02] hover:shadow-2xl" on:click={() => openCommission(c)}>
             <div class="absolute top-0 right-0 m-4">
-              <span class="inline-block px-3 py-1 bg-red-600 text-white text-xs font-bold font-mono shadow">CLASSIFIED: {c.stats.total} FINDINGS</span>
-            </div>
-            <div class="bg-red-100 border-l-4 border-red-600 p-2 mb-3 w-full">
-              <p class="text-xs font-bold text-red-800 font-mono">📋 OFFICIAL INQUIRY DOCUMENT</p>
-            </div>
-            <h2 class="text-2xl font-bold text-gray-900 mb-2 group-hover:text-red-600 transition-colors pr-20">{c.name}</h2>
-            <p class="mb-4 text-gray-700 line-clamp-3">{c.summary}</p>
-            <div class="flex gap-3 mt-auto">
-              <span class="inline-flex items-center gap-1 px-3 py-1 bg-green-100 border border-green-300 text-green-800 font-bold text-xs font-mono uppercase tracking-wide">
-                ✓ ACCEPTED: {c.stats.accepted}
+              <span class="inline-block px-3 py-1 bg-gradient-to-r from-mandate-red to-mandate-orange text-white text-xs font-official font-bold shadow-lg rounded uppercase tracking-wide">
+                {c.stats.total} Recommendations
               </span>
-              <span class="inline-flex items-center gap-1 px-3 py-1 bg-orange-100 border border-orange-300 text-orange-800 font-bold text-xs font-mono uppercase tracking-wide">
-                ⏳ IMPLEMENTED: {c.stats.implemented}
+            </div>
+            <div class="bg-mandate-red/10 border-l-4 border-mandate-red p-3 mb-4 w-full rounded-r">
+              <p class="text-xs font-official font-bold text-mandate-red uppercase tracking-wide">Official Inquiry</p>
+            </div>
+            <h2 class="text-2xl font-official font-bold text-mandate-light mb-3 group-hover:text-mandate-gold transition-colors pr-20 leading-tight">{c.name}</h2>
+            <p class="mb-6 text-mandate-light/80 line-clamp-3 font-body leading-relaxed flex-grow">{c.summary}</p>
+            <div class="flex gap-3 mt-auto">
+              <span class="inline-flex items-center gap-1 px-3 py-1 bg-mandate-green/20 border border-mandate-green/50 text-mandate-green font-official font-bold text-xs uppercase tracking-wide rounded">
+                ✓ Accepted: {c.stats.accepted}
+              </span>
+              <span class="inline-flex items-center gap-1 px-3 py-1 bg-mandate-pending/20 border border-mandate-pending/50 text-mandate-pending font-official font-bold text-xs uppercase tracking-wide rounded">
+                ⏳ Implemented: {c.stats.implemented}
               </span>
             </div>
             <div class="absolute bottom-0 right-0 m-4 opacity-0 group-hover:opacity-100 transition-opacity">
-              <span class="text-red-600 font-bold text-xs font-mono">📄 ACCESS FULL REPORT →</span>
+              <span class="text-mandate-gold font-official font-bold text-xs uppercase tracking-wide">View Details →</span>
             </div>
           </div>
         {/each}
       </div>
     {/if}
     {#if selectedCommission}
-      <div class="fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50">
-        <div class="bg-white rounded-lg shadow-2xl max-w-4xl w-full mx-4 p-8 relative animate-fade-in border-4 border-red-600">
-          <button class="absolute top-4 right-4 text-gray-400 hover:text-red-600 text-2xl font-bold" on:click={closeCommission}>&times;</button>
+      <div class="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center z-50 p-4">
+        <div class="bg-mandate-card rounded-xl shadow-2xl max-w-5xl w-full mx-4 p-8 relative animate-fade-in border border-mandate-slate/30 max-h-screen overflow-y-auto">
+          <button class="absolute top-4 right-4 text-mandate-light/60 hover:text-mandate-red text-3xl font-bold transition-colors" on:click={closeCommission}>&times;</button>
           
-          <div class="bg-red-600 text-white p-4 mb-6 -m-8 mb-6">
+          <div class="bg-gradient-to-r from-mandate-red to-mandate-orange text-white p-6 mb-6 -m-8 mb-6 rounded-t-xl">
             <div class="flex items-center justify-between">
               <div>
-                <p class="text-sm font-mono font-bold">CLASSIFIED DOCUMENT</p>
-                <p class="text-xs font-mono opacity-75">SECURITY CLEARANCE REQUIRED</p>
+                <p class="text-sm font-official font-bold uppercase tracking-wide">Royal Commission Report</p>
+                <p class="text-xs font-body opacity-90">Official Government Inquiry</p>
               </div>
-              <div class="bg-white text-red-600 px-3 py-1 font-mono text-xs font-bold">
-                CONFIDENTIAL
+              <div class="bg-white text-mandate-red px-4 py-2 font-official text-xs font-bold uppercase tracking-wide rounded shadow">
+                {selectedCommission.stats.total} Recommendations
               </div>
             </div>
           </div>
           
-          <h2 class="text-3xl font-bold text-gray-900 mb-4">{selectedCommission.name}</h2>
-          <p class="mb-3 text-gray-700"><span class="font-bold text-red-700 font-mono">EXECUTIVE SUMMARY:</span> {selectedCommission.summary}</p>
-          <p class="mb-6 text-gray-700"><span class="font-bold text-red-700 font-mono">KEY FINDINGS:</span> {selectedCommission.findings}</p>
+          <h2 class="text-3xl font-official font-bold text-mandate-light mb-6 leading-tight">{selectedCommission.name}</h2>
+          {#if selectedCommission.year}
+            <p class="mb-3 text-mandate-light/80 font-body"><span class="font-official font-bold text-mandate-gold">Report Year:</span> {selectedCommission.year}</p>
+          {/if}
+          <p class="mb-4 text-mandate-light/80 font-body leading-relaxed"><span class="font-official font-bold text-mandate-gold">Summary:</span> {selectedCommission.summary}</p>
+          <p class="mb-8 text-mandate-light/80 font-body leading-relaxed"><span class="font-official font-bold text-mandate-gold">Key Findings:</span> {selectedCommission.findings}</p>
           
-          <div class="overflow-x-auto rounded-lg shadow bg-gray-50 border-2 border-gray-200">
-            <table class="min-w-full divide-y divide-gray-300">
-              <thead>
-                <tr class="bg-gray-200">
-                  <th class="px-4 py-3 text-left font-bold text-gray-900 font-mono text-sm">RECOMMENDATION</th>
-                  <th class="px-4 py-3 text-center font-bold text-gray-900 font-mono text-sm">STATUS</th>
-                  <th class="px-4 py-3 text-center font-bold text-gray-900 font-mono text-sm">IMPLEMENTATION</th>
-                </tr>
-              </thead>
-              <tbody class="divide-y divide-gray-200">
-                {#each selectedCommission.recommendations as rec}
-                  <tr class="hover:bg-gray-100 transition-colors">
-                    <td class="px-4 py-3 align-top text-left">
-                      <span class="block font-medium text-gray-900">{rec.recommendation}</span>
-                      {#if rec.details}
-                        <span class="block text-xs text-gray-500 mt-1 italic">{rec.details}</span>
-                      {/if}
-                    </td>
-                    <td class="px-4 py-3 text-center align-top">
-                      {#if rec.accepted}
-                        <span class="inline-block px-3 py-1 bg-green-100 border border-green-400 text-green-800 font-bold text-xs font-mono">
-                          ✓ ACCEPTED
-                        </span>
-                      {:else}
-                        <span class="inline-block px-3 py-1 bg-red-100 border border-red-400 text-red-800 font-bold text-xs font-mono">
-                          ✗ REJECTED
-                        </span>
-                      {/if}
-                    </td>
-                    <td class="px-4 py-3 text-center align-top">
-                      {#if rec.implemented}
-                        <span class="inline-block px-3 py-1 bg-green-100 border border-green-400 text-green-800 font-bold text-xs font-mono">
-                          ✓ COMPLETED
-                        </span>
-                      {:else}
-                        <span class="inline-block px-3 py-1 bg-orange-100 border border-orange-400 text-orange-800 font-bold text-xs font-mono">
-                          ⏳ PENDING
-                        </span>
-                      {/if}
-                    </td>
-                  </tr>
-                {/each}
-              </tbody>
-            </table>
-            {#if selectedCommission.recommendations.length === 0}
-              <div class="p-8 text-center text-gray-400 font-mono">
-                <div class="bg-red-600 text-white px-4 py-2 inline-block font-bold">
-                  ████████ REDACTED ████████
+          {#if selectedCommission.implementationStatus}
+            <div class="bg-mandate-slate/20 rounded-lg p-6 mb-8 border border-mandate-slate/30">
+              <h3 class="font-official font-bold text-mandate-gold mb-4 uppercase tracking-wide">Implementation Status Overview</h3>
+              <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div class="text-center">
+                  <div class="bg-mandate-green/20 border border-mandate-green text-mandate-green font-official font-bold text-xl px-4 py-3 rounded-lg">
+                    {selectedCommission.implementationStatus.fullyImplemented}
+                  </div>
+                  <p class="text-xs text-mandate-light/60 mt-2 font-body uppercase tracking-wide">Fully Implemented</p>
+                </div>
+                <div class="text-center">
+                  <div class="bg-mandate-pending/20 border border-mandate-pending text-mandate-pending font-official font-bold text-xl px-4 py-3 rounded-lg">
+                    {selectedCommission.implementationStatus.partiallyImplemented}
+                  </div>
+                  <p class="text-xs text-mandate-light/60 mt-2 font-body uppercase tracking-wide">Partially Implemented</p>
+                </div>
+                <div class="text-center">
+                  <div class="bg-mandate-orange/20 border border-mandate-orange text-mandate-orange font-official font-bold text-xl px-4 py-3 rounded-lg">
+                    {selectedCommission.implementationStatus.notImplemented}
+                  </div>
+                  <p class="text-xs text-mandate-light/60 mt-2 font-body uppercase tracking-wide">Not Implemented</p>
+                </div>
+                <div class="text-center">
+                  <div class="bg-mandate-red/20 border border-mandate-red text-mandate-red font-official font-bold text-xl px-4 py-3 rounded-lg">
+                    {selectedCommission.implementationStatus.notAccepted}
+                  </div>
+                  <p class="text-xs text-mandate-light/60 mt-2 font-body uppercase tracking-wide">Not Accepted</p>
                 </div>
               </div>
-            {/if}
-          </div>
+            </div>
+          {/if}
           
-          <div class="mt-6 text-center">
+          {#if selectedCommission.categories && selectedCommission.categories.length > 0}
+            <!-- New categorized display -->
+            <div class="space-y-8">
+              {#each selectedCommission.categories as category}
+                <div class="bg-mandate-slate/10 rounded-lg border border-mandate-slate/30 overflow-hidden">
+                  <div class="bg-gradient-to-r from-mandate-red to-mandate-orange text-white p-4">
+                    <h3 class="font-official font-bold text-lg uppercase tracking-wide">{category.name}</h3>
+                    <p class="text-sm opacity-90 font-body">{category.description}</p>
+                  </div>
+                  <div class="overflow-x-auto">
+                    <table class="min-w-full">
+                      <thead>
+                        <tr class="bg-mandate-card border-b border-mandate-slate/30">
+                          <th class="px-4 py-3 text-left font-official font-bold text-mandate-light text-sm uppercase tracking-wide">ID</th>
+                          <th class="px-4 py-3 text-left font-official font-bold text-mandate-light text-sm uppercase tracking-wide">Recommendation</th>
+                          <th class="px-4 py-3 text-center font-official font-bold text-mandate-light text-sm uppercase tracking-wide">Status</th>
+                          <th class="px-4 py-3 text-center font-official font-bold text-mandate-light text-sm uppercase tracking-wide">Implementation</th>
+                        </tr>
+                      </thead>
+                      <tbody class="divide-y divide-mandate-slate/20">
+                        {#each category.recommendations as rec}
+                          <tr class="hover:bg-mandate-slate/10 transition-colors">
+                            <td class="px-4 py-4 align-top text-center">
+                              <span class="bg-gradient-to-r from-mandate-red to-mandate-orange text-white font-official text-xs px-3 py-1 rounded font-bold">#{rec.id}</span>
+                            </td>
+                            <td class="px-4 py-4 align-top text-left">
+                              <span class="block font-body font-medium text-mandate-light text-sm leading-relaxed">{rec.recommendation}</span>
+                              {#if rec.notes}
+                                <span class="block text-xs text-mandate-light/60 mt-2 italic bg-mandate-slate/20 p-3 rounded border-l-2 border-mandate-gold font-body">
+                                  <span class="font-official font-bold text-mandate-gold uppercase">Note:</span> {rec.notes}
+                                </span>
+                              {/if}
+                            </td>
+                            <td class="px-4 py-4 text-center align-top">
+                              {#if rec.accepted === true || rec.accepted === 'true'}
+                                <span class="inline-block px-3 py-1 bg-mandate-green/20 border border-mandate-green text-mandate-green font-official font-bold text-xs uppercase tracking-wide rounded">
+                                  ✓ Accepted
+                                </span>
+                              {:else if rec.accepted === 'partial'}
+                                <span class="inline-block px-3 py-1 bg-mandate-pending/20 border border-mandate-pending text-mandate-pending font-official font-bold text-xs uppercase tracking-wide rounded">
+                                  ~ Partial
+                                </span>
+                              {:else}
+                                <span class="inline-block px-3 py-1 bg-mandate-red/20 border border-mandate-red text-mandate-red font-official font-bold text-xs uppercase tracking-wide rounded">
+                                  ✗ Rejected
+                                </span>
+                              {/if}
+                            </td>
+                            <td class="px-4 py-4 text-center align-top">
+                              {#if rec.implemented === true || rec.implemented === 'true'}
+                                <span class="inline-block px-3 py-1 bg-mandate-green/20 border border-mandate-green text-mandate-green font-official font-bold text-xs uppercase tracking-wide rounded">
+                                  ✓ Complete
+                                </span>
+                              {:else if rec.implemented === 'partial'}
+                                <span class="inline-block px-3 py-1 bg-mandate-pending/20 border border-mandate-pending text-mandate-pending font-official font-bold text-xs uppercase tracking-wide rounded">
+                                  ⏳ Partial
+                                </span>
+                              {:else}
+                                <span class="inline-block px-3 py-1 bg-mandate-orange/20 border border-mandate-orange text-mandate-orange font-official font-bold text-xs uppercase tracking-wide rounded animate-pulse">
+                                  ✗ Unmet
+                                </span>
+                              {/if}
+                            </td>
+                          </tr>
+                        {/each}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              {/each}
+            </div>
+          {:else}
+            <!-- Fallback for old flat structure -->
+            <div class="overflow-x-auto rounded-lg shadow bg-mandate-slate/10 border border-mandate-slate/30">
+              <table class="min-w-full">
+                <thead>
+                  <tr class="bg-mandate-card border-b border-mandate-slate/30">
+                    <th class="px-4 py-3 text-left font-official font-bold text-mandate-light text-sm uppercase tracking-wide">Recommendation</th>
+                    <th class="px-4 py-3 text-center font-official font-bold text-mandate-light text-sm uppercase tracking-wide">Status</th>
+                    <th class="px-4 py-3 text-center font-official font-bold text-mandate-light text-sm uppercase tracking-wide">Implementation</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-mandate-slate/20">
+                  {#each (selectedCommission.recommendations || []) as rec}
+                    <tr class="hover:bg-mandate-slate/10 transition-colors">
+                      <td class="px-4 py-4 align-top text-left">
+                        <span class="block font-body font-medium text-mandate-light leading-relaxed">{rec.recommendation}</span>
+                        {#if rec.details}
+                          <span class="block text-xs text-mandate-light/60 mt-2 italic font-body">{rec.details}</span>
+                        {/if}
+                      </td>
+                      <td class="px-4 py-4 text-center align-top">
+                        {#if rec.accepted}
+                          <span class="inline-block px-3 py-1 bg-mandate-green/20 border border-mandate-green text-mandate-green font-official font-bold text-xs uppercase tracking-wide rounded">
+                            ✓ Accepted
+                          </span>
+                        {:else}
+                          <span class="inline-block px-3 py-1 bg-mandate-red/20 border border-mandate-red text-mandate-red font-official font-bold text-xs uppercase tracking-wide rounded">
+                            ✗ Rejected
+                          </span>
+                        {/if}
+                      </td>
+                      <td class="px-4 py-4 text-center align-top">
+                        {#if rec.implemented}
+                          <span class="inline-block px-3 py-1 bg-mandate-green/20 border border-mandate-green text-mandate-green font-official font-bold text-xs uppercase tracking-wide rounded">
+                            ✓ Complete
+                          </span>
+                        {:else}
+                          <span class="inline-block px-3 py-1 bg-mandate-orange/20 border border-mandate-orange text-mandate-orange font-official font-bold text-xs uppercase tracking-wide rounded animate-pulse">
+                            ⏳ Unmet
+                          </span>
+                        {/if}
+                      </td>
+                    </tr>
+                  {/each}
+                </tbody>
+              </table>
+              {#if !selectedCommission.recommendations || selectedCommission.recommendations.length === 0}
+                <div class="p-8 text-center text-mandate-light/40 font-official">
+                  <div class="bg-gradient-to-r from-mandate-red to-mandate-orange text-white px-6 py-3 inline-block font-bold uppercase tracking-wide rounded">
+                    No Data Available
+                  </div>
+                </div>
+              {/if}
+            </div>
+          {/if}
+          
+          {#if selectedCommission.keyOutcomes && selectedCommission.keyOutcomes.length > 0}
+            <div class="mt-8 bg-mandate-green/10 rounded-lg p-6 border border-mandate-green/30">
+              <h3 class="font-official font-bold text-mandate-green mb-4 uppercase tracking-wide">Key Outcomes Achieved</h3>
+              <ul class="list-disc list-inside space-y-2">
+                {#each selectedCommission.keyOutcomes as outcome}
+                  <li class="text-sm text-mandate-light/80 font-body leading-relaxed">{outcome}</li>
+                {/each}
+              </ul>
+            </div>
+          {/if}
+          
+          {#if selectedCommission.ongoingChallenges && selectedCommission.ongoingChallenges.length > 0}
+            <div class="mt-4 bg-mandate-orange/10 rounded-lg p-6 border border-mandate-orange/30">
+              <h3 class="font-official font-bold text-mandate-orange mb-4 uppercase tracking-wide">Ongoing Challenges</h3>
+              <ul class="list-disc list-inside space-y-2">
+                {#each selectedCommission.ongoingChallenges as challenge}
+                  <li class="text-sm text-mandate-light/80 font-body leading-relaxed">{challenge}</li>
+                {/each}
+              </ul>
+            </div>
+          {/if}
+          
+          <div class="mt-8 text-center">
             <button 
               on:click={closeCommission}
-              class="bg-gradient-to-r from-red-600 to-orange-600 hover:from-red-700 hover:to-orange-700 text-white font-bold py-2 px-6 rounded transition-all duration-300 transform hover:scale-105 font-mono"
+              class="bg-gradient-to-r from-mandate-red to-mandate-orange hover:from-mandate-deep-red hover:to-mandate-red text-white font-official font-bold py-3 px-8 rounded-lg transition-all duration-300 transform hover:scale-105 uppercase tracking-wide shadow-lg"
             >
-              📄 CLOSE FILE
+              Close Report
             </button>
           </div>
         </div>
@@ -233,83 +400,103 @@
     
     <!-- Random Recommendation Modal -->
     {#if showRandomModal && randomRecommendation}
-      <div class="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50">
-        <div class="bg-white rounded-lg shadow-2xl max-w-4xl w-full mx-4 p-8 relative animate-fade-in border-4 border-red-600">
-          <button class="absolute top-4 right-4 text-gray-400 hover:text-red-600 text-2xl font-bold" on:click={closeRandomModal}>&times;</button>
+      <div class="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center z-50 p-4">
+        <div class="bg-mandate-card rounded-xl shadow-2xl max-w-4xl w-full mx-4 p-8 relative animate-fade-in border border-mandate-slate/30">
+          <button class="absolute top-4 right-4 text-mandate-light/60 hover:text-mandate-red text-3xl font-bold transition-colors" on:click={closeRandomModal}>&times;</button>
           
-          <div class="bg-red-600 text-white p-4 mb-6 -m-8 mb-6">
+          <div class="bg-gradient-to-r from-mandate-red to-mandate-orange text-white p-6 mb-6 -m-8 mb-6 rounded-t-xl">
             <div class="flex items-center justify-between">
               <div>
-                <p class="text-sm font-mono font-bold">DECLASSIFIED FINDING</p>
-                <p class="text-xs font-mono opacity-75">ACCESS GRANTED: {new Date().toISOString().split('T')[0]}</p>
+                <p class="text-sm font-official font-bold uppercase tracking-wide">Unfinished Business</p>
+                <p class="text-xs font-body opacity-90">Found: {new Date().toLocaleDateString()}</p>
               </div>
-              <div class="bg-orange-500 text-white px-3 py-1 font-mono text-xs font-bold animate-pulse">
-                UNIMPLEMENTED
+              <div class="bg-white/20 text-white px-4 py-2 font-official text-xs font-bold uppercase tracking-wide rounded shadow animate-pulse">
+                UNMET
               </div>
             </div>
           </div>
           
-          <div class="text-center mb-6">
-            <h2 class="text-3xl font-bold text-gray-900 mb-2">ARCHIVED RECOMMENDATION</h2>
-            <div class="inline-block px-4 py-2 bg-gray-100 text-gray-800 font-mono text-sm font-bold border">
-              SOURCE: {randomRecommendation.commissionName}
+          <div class="text-center mb-8">
+            <h2 class="text-4xl font-impact font-bold text-mandate-light mb-3 uppercase tracking-mandate">Unfinished Mandate</h2>
+            <div class="inline-block px-6 py-3 bg-mandate-slate/20 text-mandate-light font-official text-sm font-bold border border-mandate-slate/50 rounded-lg">
+              Source: {randomRecommendation.commissionName}
             </div>
-            <p class="text-xs text-gray-500 mt-2 italic font-mono">Security Level: DECLASSIFIED • Status: PENDING IMPLEMENTATION</p>
+            <p class="text-xs text-mandate-light/60 mt-3 italic font-body">A recommendation that remains unfulfilled</p>
           </div>
           
-          <div class="bg-gradient-to-r from-gray-50 to-gray-100 rounded-lg p-6 border-2 border-gray-300">
-            <div class="flex items-start gap-4">
-              <div class="bg-red-600 text-white font-mono w-12 h-12 flex items-center justify-center font-bold text-sm flex-shrink-0">
+          <div class="bg-mandate-slate/10 rounded-lg p-6 border border-mandate-slate/30">
+            <div class="flex items-start gap-6">
+              <div class="bg-gradient-to-r from-mandate-red to-mandate-orange text-white font-official w-16 h-16 flex items-center justify-center font-bold text-sm flex-shrink-0 rounded-lg shadow-lg">
                 #{randomRecommendation.id}
               </div>
               <div class="flex-1">
-                <div class="bg-orange-100 border-l-4 border-orange-500 p-3 mb-4">
-                  <p class="text-sm font-bold text-orange-800 font-mono">📋 RECOMMENDATION DETAILS</p>
+                <div class="bg-mandate-orange/20 border-l-4 border-mandate-orange p-4 mb-6 rounded-r">
+                  <p class="text-sm font-official font-bold text-mandate-orange uppercase tracking-wide">Recommendation Details</p>
                 </div>
-                <p class="text-lg text-gray-900 font-medium leading-relaxed mb-4">
+                <p class="text-lg text-mandate-light font-body font-medium leading-relaxed mb-6">
                   {randomRecommendation.recommendation}
                 </p>
-                {#if randomRecommendation.details}
-                  <p class="text-sm text-gray-600 italic bg-gray-100 p-3 border-l-4 border-gray-400">
-                    <span class="font-mono font-bold text-gray-800">ADDITIONAL CONTEXT:</span> {randomRecommendation.details}
+                {#if randomRecommendation.notes}
+                  <p class="text-sm text-mandate-light/70 italic bg-mandate-slate/20 p-4 border-l-4 border-mandate-gold rounded-r font-body">
+                    <span class="font-official font-bold text-mandate-gold uppercase">Implementation Notes:</span> {randomRecommendation.notes}
                   </p>
                 {/if}
               </div>
             </div>
           </div>
           
-          <div class="mt-6 flex justify-center gap-4">
+          <div class="mt-8 flex justify-center gap-6">
             <div class="flex items-center gap-2">
-              <span class="inline-block px-4 py-2 bg-green-100 border border-green-400 text-green-800 font-bold text-xs font-mono">
-                ✓ OFFICIALLY ACCEPTED
-              </span>
+              {#if randomRecommendation.accepted === true || randomRecommendation.accepted === 'true'}
+                <span class="inline-block px-4 py-2 bg-mandate-green/20 border border-mandate-green text-mandate-green font-official font-bold text-xs uppercase tracking-wide rounded">
+                  ✓ Officially Accepted
+                </span>
+              {:else if randomRecommendation.accepted === 'partial'}
+                <span class="inline-block px-4 py-2 bg-mandate-pending/20 border border-mandate-pending text-mandate-pending font-official font-bold text-xs uppercase tracking-wide rounded">
+                  ~ Partially Accepted
+                </span>
+              {:else}
+                <span class="inline-block px-4 py-2 bg-mandate-red/20 border border-mandate-red text-mandate-red font-official font-bold text-xs uppercase tracking-wide rounded">
+                  ✗ Not Accepted
+                </span>
+              {/if}
             </div>
             <div class="flex items-center gap-2">
-              <span class="inline-block px-4 py-2 bg-red-100 border border-red-400 text-red-800 font-bold text-xs font-mono animate-pulse">
-                ✗ NOT IMPLEMENTED
-              </span>
+              {#if randomRecommendation.implemented === true || randomRecommendation.implemented === 'true'}
+                <span class="inline-block px-4 py-2 bg-mandate-green/20 border border-mandate-green text-mandate-green font-official font-bold text-xs uppercase tracking-wide rounded">
+                  ✓ Fully Implemented
+                </span>
+              {:else if randomRecommendation.implemented === 'partial'}
+                <span class="inline-block px-4 py-2 bg-mandate-pending/20 border border-mandate-pending text-mandate-pending font-official font-bold text-xs uppercase tracking-wide rounded animate-pulse">
+                  ⏳ Partially Implemented
+                </span>
+              {:else}
+                <span class="inline-block px-4 py-2 bg-mandate-red/20 border border-mandate-red text-mandate-red font-official font-bold text-xs uppercase tracking-wide rounded animate-pulse">
+                  ✗ Unfinished Business
+                </span>
+              {/if}
             </div>
           </div>
           
-          <div class="mt-6 text-center">
+          <div class="mt-8 text-center">
             <button 
               on:click={getRandomUnimplementedRecommendation}
-              class="bg-gradient-to-r from-red-600 to-orange-600 hover:from-red-700 hover:to-orange-700 text-white font-bold py-2 px-6 rounded transition-all duration-300 transform hover:scale-105 mr-4 font-mono"
+              class="bg-gradient-to-r from-mandate-red to-mandate-orange hover:from-mandate-deep-red hover:to-mandate-red text-white font-official font-bold py-3 px-8 rounded-lg transition-all duration-300 transform hover:scale-105 mr-4 uppercase tracking-wide shadow-lg"
             >
-              📄 ACCESS ANOTHER FILE
+              Find Another
             </button>
             <button 
               on:click={closeRandomModal}
-              class="bg-gray-200 hover:bg-gray-300 text-gray-700 font-bold py-2 px-6 rounded transition-all duration-300 font-mono"
+              class="bg-mandate-slate/30 hover:bg-mandate-slate/50 text-mandate-light font-official font-bold py-3 px-8 rounded-lg transition-all duration-300 uppercase tracking-wide"
             >
-              CLOSE FILE
+              Close
             </button>
           </div>
         </div>
       </div>
     {/if}
-    <div class="mt-12 text-center text-gray-500 text-sm font-mono">
-      &copy; {new Date().getFullYear()} The Redacted Truth • Security Classification: UNCLASSIFIED
+    <div class="mt-16 text-center text-mandate-light/40 text-sm font-body">
+      &copy; {new Date().getFullYear()} The Unfinished Mandate • Tracking accountability in Australian governance
     </div>
   </div>
 </main>
