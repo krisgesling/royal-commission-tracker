@@ -1,0 +1,81 @@
+{
+  "name": "Example Royal Commission",
+  "year": "2020-2022",
+  "summary": "This is a fictional example commission for demonstration purposes, investigating systemic issues in public administration and governance.",
+  "findings": "The commission found several areas for improvement in policy and practice, including gaps in accountability, insufficient oversight mechanisms, and inadequate consultation processes. The report highlighted the need for greater transparency, improved service delivery, and enhanced community engagement.",
+  "totalRecommendations": 5,
+  "categories": [
+    {
+      "name": "Governance and Accountability",
+      "description": "Recommendations for improving governance structures and accountability mechanisms",
+      "recommendations": [
+        {
+          "id": 1,
+          "recommendation": "Establish a national anti-corruption commission with broad investigative powers and adequate resourcing to investigate allegations of corruption across all levels of government.",
+          "accepted": true,
+          "implemented": "partial",
+          "notes": "Legislation passed but implementation ongoing"
+        },
+        {
+          "id": 2,
+          "recommendation": "Implement mandatory transparency reporting for all government departments, including publication of decision-making processes and expenditure data.",
+          "accepted": true,
+          "implemented": false,
+          "notes": "Framework under development"
+        }
+      ]
+    },
+    {
+      "name": "Public Services",
+      "description": "Recommendations for improving public service delivery and accessibility",
+      "recommendations": [
+        {
+          "id": 3,
+          "recommendation": "Increase funding for mental health services by 50% over three years, with particular focus on rural and remote communities.",
+          "accepted": true,
+          "implemented": true,
+          "notes": "Funding allocated and services expanded"
+        },
+        {
+          "id": 4,
+          "recommendation": "Establish standardized service delivery benchmarks across all government agencies to ensure consistent quality of public services.",
+          "accepted": true,
+          "implemented": "partial",
+          "notes": "Benchmarks developed, rollout in progress"
+        }
+      ]
+    },
+    {
+      "name": "Policy Review",
+      "description": "Recommendations for reviewing and reforming existing policies",
+      "recommendations": [
+        {
+          "id": 5,
+          "recommendation": "Review mandatory detention policies with a view to reducing their use and implementing alternative community-based solutions where appropriate.",
+          "accepted": false,
+          "implemented": false,
+          "notes": "Government rejected recommendation citing security concerns"
+        }
+      ]
+    }
+  ],
+  "implementationStatus": {
+    "fullyImplemented": 1,
+    "partiallyImplemented": 2,
+    "notImplemented": 1,
+    "notAccepted": 1,
+    "lastUpdated": "2024"
+  },
+  "keyOutcomes": [
+    "Establishment of national anti-corruption commission",
+    "Increased mental health service funding",
+    "Development of transparency reporting framework",
+    "Creation of service delivery benchmarks"
+  ],
+  "ongoingChallenges": [
+    "Implementation timelines for transparency measures",
+    "Resistance to policy review in certain areas",
+    "Coordination between different levels of government",
+    "Adequate resourcing for all recommended initiatives"
+  ]
+}

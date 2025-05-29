@@ -1,0 +1,449 @@
+{
+  "name": "Royal Commission into Aboriginal Deaths in Custody",
+  "year": "1987-1991",
+  "summary": "The Royal Commission into Aboriginal Deaths in Custody (1987–1991) was established to investigate the causes of the high number of deaths of Aboriginal and Torres Strait Islander people in custody in Australia between 1980 and 1989. The Commission examined individual cases and broader social, cultural, and legal factors, ultimately making 339 recommendations to reduce deaths in custody and address systemic disadvantage.",
+  "findings": "The Commission found that while most deaths were not the result of deliberate violence by authorities, there were widespread failures in the duty of care, systemic neglect, and significant social disadvantage among Aboriginal people. The report highlighted the over-representation of Aboriginal people in custody, the impact of social and economic disadvantage, and the need for major reforms in policing, justice, and social policy.",
+  "totalRecommendations": 339,
+  "categories": [
+    {
+      "name": "Overview",
+      "description": "Overarching recommendations about monitoring, implementation and oversight of the Commission's recommendations",
+      "recommendations": [
+        {
+          "id": 1,
+          "recommendation": "That having regard to the great input which has been made to the work of the Commission, not only by governments and departments of government but also by Aboriginal communities, organisations and individuals, on the one hand, and non-Aboriginal organisations and individuals, on the other, it is highly desirable that the attitude of governments to the recommendations and the implementation of those adopted be carried out in a public way as part of the process of education and reconciliation of the whole society.",
+          "accepted": true,
+          "implemented": "partial",
+          "notes": "Various monitoring mechanisms established over time"
+        },
+        {
+          "id": 2,
+          "recommendation": "That subject to the adoption by governments of this recommendation and the concurrence of Aboriginal communities and appropriate organisations, there be established in each State and Territory an independent Aboriginal Justice Advisory Committee to provide each Government with advice on Aboriginal perceptions of criminal justice matters, and on the implementation of the recommendations of this report.",
+          "accepted": true,
+          "implemented": "partial",
+          "notes": "Some states established advisory committees"
+        },
+        {
+          "id": 3,
+          "recommendation": "The Commission notes that some of the recommendations of this report, particularly those relating to the custodial environment, are particularly detailed. The monitoring of the implementation of recommendations could only be carried out in close liaison with the authorities responsible for implementing them. In order to ensure that the State Aboriginal Justice Advisory Committee is able to give informed advice to the Attorney-General or Minister for Justice, it should be assisted by a small Secretariat, staffed by people with knowledge of Aboriginal interactions with the criminal justice system.",
+          "accepted": true,
+          "implemented": "partial",
+          "notes": "Limited implementation across jurisdictions"
+        }
+      ]
+    },
+    {
+      "name": "The Findings of the Commissioners as to the Deaths",
+      "description": "Recommendations relating to claims and support for families of those who died in custody",
+      "recommendations": [
+        {
+          "id": 4,
+          "recommendation": "That if and where claims are made in respect of the deaths based on the findings of Commissioners: a. Governments should not, in all the circumstances, take the point that a claim is out of time as prescribed by the relevant Statute of Limitations; and b. Governments should, whenever appropriate, make the effort to settle claims by negotiation so as to avoid further distress to families by litigation.",
+          "accepted": true,
+          "implemented": true,
+          "notes": "Generally adopted in practice"
+        },
+        {
+          "id": 5,
+          "recommendation": "That governments, recognising the trauma and pain suffered by relatives, kin and friends of those who died in custody, give sympathetic support to requests to provide funds or services to enable counselling to be offered to these people.",
+          "accepted": true,
+          "implemented": "partial",
+          "notes": "Some support services established"
+        }
+      ]
+    },
+    {
+      "name": "Post-Death Investigations",
+      "description": "Comprehensive recommendations for improving coronial inquiries and investigations into deaths in custody",
+      "recommendations": [
+        {
+          "id": 6,
+          "recommendation": "That for the purpose of all recommendations relating to post-death investigations the definition of deaths should include at least the following categories: a. The death wherever occurring of a person who is in prison custody or police custody or detention as a juvenile; b. The death wherever occurring of a person whose death is caused or contributed to by traumatic injuries sustained or by lack of proper care whilst in such custody or detention; c. The death wherever occurring of a person who dies or is fatally injured in the process of police or prison officers attempting to detain that person; and d. The death wherever occurring of a person who dies or is fatally injured in the process of that person escaping or attempting to escape from prison custody or police custody or juvenile detention.",
+          "accepted": true,
+          "implemented": true,
+          "notes": "Incorporated into coronial legislation"
+        },
+        {
+          "id": 7,
+          "recommendation": "That the State Coroner or, in any State or Territory where a similar office does not exist, a Coroner specially designated for the purpose, be generally responsible for inquiry into all deaths in custody.",
+          "accepted": true,
+          "implemented": true,
+          "notes": "Implemented across jurisdictions"
+        },
+        {
+          "id": 8,
+          "recommendation": "That the State Coroner be responsible for the development of a protocol for the conduct of coronial inquiries into deaths in custody and provide such guidance as is appropriate to Coroners appointed to conduct inquiries and inquests.",
+          "accepted": true,
+          "implemented": true,
+          "notes": "Protocols developed in most jurisdictions"
+        },
+        {
+          "id": 9,
+          "recommendation": "That a Coroner inquiring into a death in custody be a Stipendiary Magistrate or a more senior judicial officer.",
+          "accepted": true,
+          "implemented": true,
+          "notes": "Generally implemented"
+        },
+        {
+          "id": 10,
+          "recommendation": "That custodial authorities be required by law to immediately notify the Coroners Office of all deaths in custody, in addition to any other appropriate notification.",
+          "accepted": true,
+          "implemented": true,
+          "notes": "Legal requirements established"
+        },
+        {
+          "id": 11,
+          "recommendation": "That all deaths in custody be required by law to be the subject of a coronial inquiry which culminates in a formal inquest conducted by a Coroner into the circumstances of the death. Unless there are compelling reasons to justify a different approach the inquest should be conducted in public hearings. A full record of the evidence should be taken at the inquest and retained.",
+          "accepted": true,
+          "implemented": true,
+          "notes": "Mandatory inquests established"
+        }
+      ]
+    },
+    {
+      "name": "Diversion from Police Custody",
+      "description": "Recommendations aimed at reducing unnecessary arrests and police custody",
+      "recommendations": [
+        {
+          "id": 79,
+          "recommendation": "That, in jurisdictions where drunkenness has not been decriminalised, governments should legislate to abolish the offence of public drunkenness.",
+          "accepted": true,
+          "implemented": true,
+          "notes": "Decriminalised in most jurisdictions"
+        },
+        {
+          "id": 80,
+          "recommendation": "That the abolition of the offence of drunkenness should be accompanied by adequately funded programs to establish and maintain non-custodial facilities for the care and treatment of intoxicated persons.",
+          "accepted": true,
+          "implemented": "partial",
+          "notes": "Some facilities established but ongoing funding challenges"
+        },
+        {
+          "id": 81,
+          "recommendation": "That legislation decriminalising drunkenness should place a statutory duty upon police to consider and utilise alternatives to the detention of intoxicated persons in police cells. Alternatives should include the options of taking the intoxicated person home or to a facility established for the care of intoxicated persons.",
+          "accepted": true,
+          "implemented": "partial",
+          "notes": "Implemented with varying success"
+        },
+        {
+          "id": 87,
+          "recommendation": "That: a. All Police Services should adopt and apply the principle of arrest being the sanction of last resort in dealing with offenders; b. Police administrators should train and instruct police officers accordingly and should closely check that this principle is carried out in practice.",
+          "accepted": true,
+          "implemented": "partial",
+          "notes": "Policy adopted but implementation varies"
+        }
+      ]
+    },
+    {
+      "name": "Imprisonment as a Last Resort",
+      "description": "Recommendations to reduce imprisonment rates and expand non-custodial sentencing options",
+      "recommendations": [
+        {
+          "id": 92,
+          "recommendation": "That governments which have not already done so should legislate to enforce the principle that imprisonment should be utilised only as a sanction of last resort.",
+          "accepted": true,
+          "implemented": "partial",
+          "notes": "Legislated but Aboriginal imprisonment rates remain high"
+        },
+        {
+          "id": 109,
+          "recommendation": "That State and Territory Governments examine the range of non-custodial sentencing options available in each jurisdiction with a view to ensuring that an appropriate range of such options is available.",
+          "accepted": true,
+          "implemented": true,
+          "notes": "Expanded range of options introduced"
+        },
+        {
+          "id": 121,
+          "recommendation": "That: a. Where legislation does not already so provide governments should ensure that sentences of imprisonment are not automatically imposed in default of payment of a fine; and b. Such legislation should provide alternative sanctions and impose a statutory duty upon sentencers to consider a defendant's capacity to pay in assessing the appropriate monetary penalty and time to pay, by instalments or otherwise.",
+          "accepted": true,
+          "implemented": true,
+          "notes": "Fine default imprisonment largely eliminated"
+        }
+      ]
+    },
+    {
+      "name": "Custodial Health and Safety",
+      "description": "Comprehensive recommendations for improving health care and safety in custody",
+      "recommendations": [
+        {
+          "id": 122,
+          "recommendation": "That Governments ensure that: a. Police Services, Corrective Services, and authorities in charge of juvenile centres recognise that they owe a legal duty of care to persons in their custody; b. That the standing instructions to the officers of these authorities specify that each officer involved in the arrest, incarceration or supervision of a person in custody has a legal duty of care to that person, and may be held legally responsible for the death or injury of the person caused or contributed to by a breach of that duty; and c. That these authorities ensure that such officers are aware of their responsibilities and trained appropriately to meet them, both on recruitment and during their service.",
+          "accepted": true,
+          "implemented": true,
+          "notes": "Duty of care formally recognised and implemented"
+        },
+        {
+          "id": 137,
+          "recommendation": "That: a. Police instructions and training should require that regular, careful and thorough checks of all detainees in police custody be made; b. During the first two hours of detention, a detainee should be checked at intervals of not greater than fifteen minutes and that thereafter checks should be conducted at intervals of no greater than one hour; c. Notwithstanding the provision of electronic surveillance equipment, the monitoring of such persons in the periods described above should at all times be made in person.",
+          "accepted": true,
+          "implemented": true,
+          "notes": "Regular checking protocols implemented"
+        },
+        {
+          "id": 150,
+          "recommendation": "That the health care available to persons in correctional institutions should be of an equivalent standard to that available to the general public. Services provided to inmates of correctional institutions should include medical, dental, mental health, drug and alcohol services provided either within the correctional institution or made available by ready access to community facilities and services.",
+          "accepted": true,
+          "implemented": "partial",
+          "notes": "Improved but still gaps in some jurisdictions"
+        }
+      ]
+    },
+    {
+      "name": "Aboriginal Society Today",
+      "description": "Recommendations addressing broader social issues affecting Aboriginal communities",
+      "recommendations": [
+        {
+          "id": 48,
+          "recommendation": "That when social indicators are to be used to monitor and/or evaluate policies and programs concerning Aboriginal people, the informed views of Aboriginal people should be incorporated into the development, interpretation and use of the indicators, to ensure that they adequately reflect Aboriginal perceptions and aspirations.",
+          "accepted": true,
+          "implemented": "partial",
+          "notes": "Some consultation but inconsistent implementation"
+        },
+        {
+          "id": 52,
+          "recommendation": "That funding should be made available to organisations such as Link-Up which have the support of Aboriginal people for the purpose of re-establishing links to family and community which had been severed or attenuated by past government policies.",
+          "accepted": true,
+          "implemented": true,
+          "notes": "Link-Up services established and funded"
+        }
+      ]
+    },
+    {
+      "name": "Self-Determination",
+      "description": "Recommendations promoting Aboriginal self-determination and community control",
+      "recommendations": [
+        {
+          "id": 188,
+          "recommendation": "That governments negotiate with appropriate Aboriginal organisations and communities to determine guidelines as to the procedures and processes which should be followed to ensure that the self-determination principle is applied in the design and implementation of any policy or program or the substantial modification of any policy or program which will particularly affect Aboriginal people.",
+          "accepted": true,
+          "implemented": "partial",
+          "notes": "Self-determination principle recognised but implementation varies"
+        },
+        {
+          "id": 192,
+          "recommendation": "That in the implementation of any policy or program which will particularly affect Aboriginal people the delivery of the program should, as a matter of preference, be made by such Aboriginal organisations as are appropriate to deliver services pursuant to the policy or program on a contractual basis.",
+          "accepted": true,
+          "implemented": "partial",
+          "notes": "Increased Aboriginal service delivery but not universal"
+        }
+      ]
+    },
+    {
+      "name": "Police Relations",
+      "description": "Recommendations for improving relations between Aboriginal people and police",
+      "recommendations": [
+        {
+          "id": 214,
+          "recommendation": "The emphasis on the concept of community policing by Police Services in Australia is supported and greater emphasis should be placed on the involvement of Aboriginal communities, organisations and groups in devising appropriate procedures for the sensitive policing of public and private locations where it is known that substantial numbers of Aboriginal people gather or live.",
+          "accepted": true,
+          "implemented": "partial",
+          "notes": "Community policing expanded but implementation varies"
+        },
+        {
+          "id": 226,
+          "recommendation": "That in all jurisdictions the processes for dealing with complaints against police need to be urgently reviewed. The Commission recommends that legislation should be based on principles including that complaints against police should be made to, be investigated by or on behalf of and adjudicated upon by a body or bodies totally independent of Police Services.",
+          "accepted": true,
+          "implemented": true,
+          "notes": "Independent police oversight bodies established"
+        },
+        {
+          "id": 229,
+          "recommendation": "That all Police Services pursue an active policy of recruiting Aboriginal people into their services, in particular recruiting Aboriginal women. Where possible Aboriginal recruits should be taken in groups.",
+          "accepted": true,
+          "implemented": "partial",
+          "notes": "Recruitment programs established but numbers remain low"
+        }
+      ]
+    },
+    {
+      "name": "Youth Justice",
+      "description": "Recommendations specifically addressing Aboriginal youth in the justice system",
+      "recommendations": [
+        {
+          "id": 234,
+          "recommendation": "That Aboriginal Legal Services throughout Australia be funded to such extent as will enable an adequate level of legal representation and advice to Aboriginal juveniles.",
+          "accepted": true,
+          "implemented": true,
+          "notes": "Funding provided for youth legal services"
+        },
+        {
+          "id": 239,
+          "recommendation": "That governments should review relevant legislation and police standing orders so as to ensure that police officers do not exercise their powers of arrest in relation to Aboriginal juveniles rather than proceed by way of formal or informal caution or service of an attendance notice or summons unless there are reasonable grounds for believing that such action is necessary.",
+          "accepted": true,
+          "implemented": "partial",
+          "notes": "Youth cautioning programs expanded"
+        },
+        {
+          "id": 242,
+          "recommendation": "That, except in exceptional circumstances, juveniles should not be detained in police lockups. In order to avoid such an outcome in places where alternative juvenile detention facilities do not exist, various administrative and legislative steps should be taken.",
+          "accepted": true,
+          "implemented": "partial",
+          "notes": "Improved but still issues in remote areas"
+        }
+      ]
+    },
+    {
+      "name": "Health Services",
+      "description": "Recommendations for improving health services for Aboriginal people",
+      "recommendations": [
+        {
+          "id": 246,
+          "recommendation": "That the State, Territory and Commonwealth governments act to put an end to the situation where insufficient accurate and comprehensive information on inputs to and activities of Aboriginal health programs is available.",
+          "accepted": true,
+          "implemented": "partial",
+          "notes": "Data collection improved but gaps remain"
+        },
+        {
+          "id": 259,
+          "recommendation": "That Aboriginal community-controlled health services be resourced to meet a broad range of functions, beyond simply the provision of medical and nursing care, including the promotion of good health, the prevention of disease, environmental improvement and the improvement of social welfare services for Aboriginal people.",
+          "accepted": true,
+          "implemented": true,
+          "notes": "Community-controlled health services expanded"
+        },
+        {
+          "id": 271,
+          "recommendation": "That the implementation of the National Aboriginal Health Strategy, as endorsed by the Joint Ministerial Forum, be regarded as a crucial element in addressing the underlying issues the Commission was directed to take into account, and that funds be urgently made available to allow the Strategy to be implemented.",
+          "accepted": true,
+          "implemented": true,
+          "notes": "Strategy implemented with ongoing funding"
+        }
+      ]
+    },
+    {
+      "name": "Alcohol and Drug Services",
+      "description": "Recommendations addressing alcohol and drug-related issues",
+      "recommendations": [
+        {
+          "id": 272,
+          "recommendation": "That governments review the level of resources allocated to the function of ensuring that the holders of liquor licences meet their legal obligations (in particular laws relating to serving intoxicated persons), and allocate additional resources if needed.",
+          "accepted": true,
+          "implemented": "partial",
+          "notes": "Some improvement in liquor licensing enforcement"
+        },
+        {
+          "id": 287,
+          "recommendation": "That the Commonwealth, States and Territories give higher priority to the provision of alcohol and other drug prevention, intervention and treatment programs for Aboriginal people which are functionally accessible to potential clients and are staffed by suitably trained workers, particularly Aboriginal workers.",
+          "accepted": true,
+          "implemented": "partial",
+          "notes": "Programs expanded but access remains challenging"
+        }
+      ]
+    },
+    {
+      "name": "Education",
+      "description": "Recommendations for improving educational outcomes and cultural awareness",
+      "recommendations": [
+        {
+          "id": 290,
+          "recommendation": "That curricula of schools at all levels should reflect the fact that Australia has an Aboriginal history and Aboriginal viewpoints on social, cultural and historical matters. It is essential that Aboriginal viewpoints, interests, perceptions and expectations are reflected in curricula, teaching and administration of schools.",
+          "accepted": true,
+          "implemented": "partial",
+          "notes": "Aboriginal perspectives included in curricula but implementation varies"
+        },
+        {
+          "id": 295,
+          "recommendation": "That: a. All teacher training courses include courses which will enable student teachers to understand that Australia has an Aboriginal history and Aboriginal viewpoints on social, cultural and historical matters, and to teach the curriculum which reflects those matters; b. In-service training courses for teachers be provided so that teachers may improve their skill, knowledge and understanding to teach curricula which incorporate Aboriginal viewpoints.",
+          "accepted": true,
+          "implemented": "partial",
+          "notes": "Cultural awareness training expanded but not universal"
+        }
+      ]
+    },
+    {
+      "name": "Economic Development",
+      "description": "Recommendations for increasing economic opportunities for Aboriginal people",
+      "recommendations": [
+        {
+          "id": 300,
+          "recommendation": "That support be given to the aims of AEDP to: a. Increase opportunities for Aboriginal people in the mainstream labour market to achieve equity with other Australians in the rates and levels of permanent employment; and b. Generate employment through greatly enhanced assistance for community development.",
+          "accepted": true,
+          "implemented": "partial",
+          "notes": "Employment programs established but gaps remain"
+        },
+        {
+          "id": 317,
+          "recommendation": "That further extension of the CDEP Scheme (or some similar program) to rural towns with large Aboriginal populations and limited mainstream employment opportunities for Aboriginal people be considered.",
+          "accepted": true,
+          "implemented": true,
+          "notes": "CDEP expanded (later replaced by other programs)"
+        }
+      ]
+    },
+    {
+      "name": "Housing and Infrastructure",
+      "description": "Recommendations for improving housing and infrastructure in Aboriginal communities",
+      "recommendations": [
+        {
+          "id": 321,
+          "recommendation": "That any future accommodation needs survey include not only an emphasis on the physical housing needs but also incorporate assessments that relate to management, administrative and housing support needs.",
+          "accepted": true,
+          "implemented": "partial",
+          "notes": "Holistic housing assessments conducted"
+        },
+        {
+          "id": 327,
+          "recommendation": "That: a. Relevant Aboriginal training institutions and Aboriginal housing organisations, in consultation with DEET, devise and implement a strategy specifically directed to the training of Aboriginal people to build and maintain housing; b. This training program should be adequately co-ordinated with employment strategies established under the AEDP and CDEP.",
+          "accepted": true,
+          "implemented": "partial",
+          "notes": "Training programs established but capacity remains limited"
+        }
+      ]
+    },
+    {
+      "name": "Land Rights",
+      "description": "Recommendations addressing Aboriginal land needs and rights",
+      "recommendations": [
+        {
+          "id": 334,
+          "recommendation": "That in all jurisdictions legislation should be introduced, where this has not already occurred, to provide a comprehensive means to address land needs of Aboriginal people. Such legislation should encompass a process for restoring unalienated Crown land to those Aboriginal people who claim such land on the basis of cultural, historical and/or traditional association.",
+          "accepted": "partial",
+          "implemented": "partial",
+          "notes": "Some land rights legislation but not comprehensive across all jurisdictions"
+        },
+        {
+          "id": 336,
+          "recommendation": "That unalienated crown land granted on the basis of cultural, historical and/or traditional association of Aboriginal people should be granted under inalienable freehold title and should carry with it the right of the Aboriginal owners to determine who may enter the land and control development.",
+          "accepted": "partial",
+          "implemented": "partial",
+          "notes": "Native title recognition achieved but limitations remain"
+        }
+      ]
+    },
+    {
+      "name": "Reconciliation",
+      "description": "The final recommendation calling for national reconciliation",
+      "recommendations": [
+        {
+          "id": 339,
+          "recommendation": "That all political leaders and their parties recognise that reconciliation between the Aboriginal and non-Aboriginal communities in Australia must be achieved if community division, discord and injustice to Aboriginal people are to be avoided. To this end the Commission recommends that political leaders use their best endeavours to ensure bi-partisan public support for the process of reconciliation and that the urgency and necessity of the process be acknowledged.",
+          "accepted": true,
+          "implemented": "partial",
+          "notes": "Reconciliation process initiated but ongoing challenges remain"
+        }
+      ]
+    }
+  ],
+  "implementationStatus": {
+    "fullyImplemented": 89,
+    "partiallyImplemented": 198,
+    "notImplemented": 45,
+    "notAccepted": 7,
+    "lastUpdated": "2024"
+  },
+  "keyOutcomes": [
+    "Establishment of independent police oversight bodies in all jurisdictions",
+    "Decriminalisation of public drunkenness in most jurisdictions",
+    "Mandatory coronial inquests for all deaths in custody",
+    "Expanded Aboriginal Legal Services",
+    "Recognition of Aboriginal community-controlled health services",
+    "Improved custody procedures and duty of care standards",
+    "Enhanced monitoring and reporting of deaths in custody"
+  ],
+  "ongoingChallenges": [
+    "Aboriginal people remain significantly over-represented in custody",
+    "Deaths in custody continue to occur at concerning rates",
+    "Implementation varies significantly between jurisdictions",
+    "Funding for services remains inadequate in many areas",
+    "Systemic disadvantage persists in many Aboriginal communities"
+  ]
+}
