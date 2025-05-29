@@ -9,7 +9,7 @@
   <div class="container mx-auto px-6 py-8 text-center">
     <div class="mb-8">
       <img 
-        src="./src/assets/The-Unfinished-Mandate-banner.png" 
+        src="The-Unfinished-Mandate-banner.png" 
         alt="The Unfinished Mandate" 
         class="h-32 md:h-40 lg:h-48 w-auto mx-auto mb-6 max-w-full object-contain" 
       />
