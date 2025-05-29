@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600;700&family=Oswald:wght@400;700&family=Inter:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Crimson+Text:wght@400;600&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -6,6 +6,45 @@
 
 @layer base {
   body {
-    @apply bg-mandate-dark text-mandate-light font-body;
+    @apply bg-neutral-100 text-neutral-800 font-sans;
+    line-height: 1.6;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display font-bold text-primary-navy;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply bg-primary-red hover:bg-red-600 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-200 hover:shadow-lg transform hover:-translate-y-0.5;
+  }
+  
+  .btn-secondary {
+    @apply bg-transparent border-2 border-primary-navy text-primary-navy hover:bg-primary-navy hover:text-white font-semibold py-2 px-6 rounded-lg transition-all duration-200;
+  }
+  
+  .status-badge {
+    @apply inline-flex items-center px-3 py-1 rounded-full text-sm font-medium;
+  }
+  
+  .status-implemented {
+    @apply bg-green-100 text-green-800;
+  }
+  
+  .status-partial {
+    @apply bg-yellow-100 text-yellow-800;
+  }
+  
+  .status-pending {
+    @apply bg-orange-100 text-orange-800;
+  }
+  
+  .status-ignored {
+    @apply bg-red-100 text-red-800;
+  }
+  
+  .card {
+    @apply bg-white rounded-xl p-6 shadow-card hover:shadow-card-hover transition-all duration-300;
   }
 }
